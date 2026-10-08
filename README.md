@@ -34,6 +34,8 @@ flowchart LR
     G --> H[Buffer<br/>queue Facebook + Instagram]
 ```
 
+![n8n workflow canvas](images/n8n-workflow.png)
+
 1. **Schedule:** n8n fires a cron trigger on the 3rd, 13th and 23rd of each month at 11:00.
 2. **Run:** n8n connects over SSH and starts a wrapper script. The script activates the Python virtual environment and writes to a log file. Its exit code goes back to n8n so failures are visible.
 3. **Topic:** the pipeline rotates through topic types (education, levels of care, family support, seasonal).

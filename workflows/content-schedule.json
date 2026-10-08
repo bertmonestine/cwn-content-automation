@@ -1,0 +1,37 @@
+{
+  "name": "CWN Content Schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "cronExpression", "expression": "0 11 3,13,23 * *" }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "command": "cd /path/to/project && ./scripts/run.sh"
+      },
+      "id": "ssh-run",
+      "name": "SSH - Run Pipeline",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [220, 0],
+      "notes": "Attach your own SSH credential. Output is logged on the server."
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "SSH - Run Pipeline", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": { "description": "3 posts per month. Cron: days 3, 13, 23 at 11:00." }
+}
